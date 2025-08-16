@@ -101,7 +101,6 @@ const keyboard_row1_container = document.getElementById('keyboard-row1');
             button.textContent = letter;
             button.addEventListener('click', (event) => {
                 const letter = event.target.textContent;
-                console.log(`Button ${letter} clicked and function triggered.`);
                 addLetter(letter);
             });
             keyboard.push(button);
@@ -117,7 +116,6 @@ const keyboard_row2_container = document.getElementById('keyboard-row2');
             button.textContent = letter;
             button.addEventListener('click', (event) => {
                 const letter = event.target.textContent;
-                console.log(`Button ${letter} clicked and function triggered.`);
                 addLetter(letter);
             });
             keyboard.push(button);

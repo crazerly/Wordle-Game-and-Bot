@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify, render_template, send_from_directory
 from flask_cors import CORS
 from collections import defaultdict, Counter
 import math
-from typing import List, Dict, Tuple
 
 app = Flask(__name__, static_url_path='/static')
 CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5000"}})
@@ -30,12 +29,10 @@ history = {} # Stores previous guesses and their patterns
 def update_difficulty():
     global possible_words
     data = request.get_json()
-    print(f"data: {data}")
     if (data == "on"):
         possible_words = list(word_list)
     else:
         possible_words = list(wordle_words)
-    print(len(possible_words))
     return '', 204
 
 
@@ -58,9 +55,7 @@ def update_word_list():
 
 @app.route('/get_best_word', methods=['POST'])
 def get_best_word():
-    print("Calculating best guess...")
     result = calc_best_guess()
-    print(f"Result: {result}")
     response = jsonify({"message": result})
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
@@ -94,9 +89,8 @@ def is_valid_candidate(word: str) -> bool:
 def calc_best_guess():
     possible_words[:] = [word for word in possible_words if is_valid_candidate(word)]
     entropy = {}
-    print(possible_words)
 
-    # Finds the best guess out of all words in 'word_list'
+    # Compute entropy for all possible guesses
     for guess in word_list:
         pattern_freq = defaultdict(int)
 
@@ -115,11 +109,4 @@ def calc_best_guess():
     return guesses[0][0] if guesses[0][1] > 1 else possible_words[0]
 
 if __name__ == '__main__':
-    possible_words = list(word_list)
-    history = {
-        "slate": "BBYGG",
-        "nairu": "BGBBB"
-        # "ample": "YYBBG"
-    }
-    print(calc_best_guess())
     app.run(debug=True, port=5000)

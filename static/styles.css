@@ -112,7 +112,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #28a745; /* green */
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 12px;
@@ -136,7 +136,7 @@ body {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
-    z-index: 1000; /* ensure it's above game grid */
+    z-index: 1000;
 }
 
 #difficulty-btn:hover {
@@ -150,13 +150,12 @@ body {
 /* Message Box */
 #wordle-message {
     font-family: 'clear-sans-norm', Arial, sans-serif;
-    /* margin-top: 85px; */
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
     font-size: 12px;
     text-align: center;
-    line-height: 40px; /* Equal to height to vertically align text */
+    line-height: 40px;
     visibility: hidden;
     background-color: black;
     color: white;
