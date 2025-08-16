@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordle</title>
+    <link rel="stylesheet" href="../static/styles.css" />
+  </head>
+  <body>
+    <div id="page">
+      <div id="title">Wordle</div>
+      <button id="difficulty-btn">Hard Mode: OFF</button>
+      <button id="playAgainButton" onclick="location.reload()">&#x21bb;</button>
+      <div id="wordle-game">
+        <div id="wordle-message"></div>
+        <div id="wordle-grid"></div>
+        <div id="keyboard">
+          <div id="keyboard-row1"></div>
+          <div id="keyboard-row2"></div>
+          <div id="keyboard-row3">
+            <button class="key-row3" id="key-enter">ENTER</button>
+          </div>
+        </div>
+        <button id="bot-guess-btn">Let the Bot Guess!</button>
+        <p id="enter-response"></p>
+        <p id="best-word-response"></p>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="../static/main.js"></script>
+  <script type="module" src="../static/word_validation.mjs"></script>
+  <script>
+    function sendLogRequest() {
+      console.log("Sending Request...");
+      fetch("/log", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data.message))
+        .catch((error) => console.error("Error:", error));
+    }
+  </script>
+</html>
