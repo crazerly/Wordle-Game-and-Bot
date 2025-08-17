@@ -8,6 +8,7 @@ This is different from the official 'Hard Mode', which forces the player to use 
 
 ```bash
 git clone https://github.com/crazerly/Wordle-Game-and-Bot.git
+cd Wordle-Game-and-Bot
 ```
 
 2. Install flask and flask-cors:
